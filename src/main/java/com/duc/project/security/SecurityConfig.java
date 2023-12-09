@@ -35,8 +35,8 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((auth) -> auth.requestMatchers("/*").permitAll()
-                        .requestMatchers("/admin/**").permitAll()
-                        //.requestMatchers("/admin/**").hasAuthority("ADMIN")
+                        //.requestMatchers("/admin/**").permitAll()
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()).formLogin(login -> login.loginPage("/login").loginProcessingUrl("/login")
                         .usernameParameter("username").passwordParameter("password")
                         .defaultSuccessUrl("/admin", true))
